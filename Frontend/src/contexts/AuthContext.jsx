@@ -89,6 +89,7 @@ export const AuthProvider = ({ children }) => {
       //await fetchProfile(data.token);
     } catch (err) {
       console.error("Login Error:", err);
+      throw err;
     } finally {
       setLoading(false);
     }
