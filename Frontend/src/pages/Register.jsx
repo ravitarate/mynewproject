@@ -9,12 +9,16 @@ import toast from 'react-hot-toast';
 import React from 'react'; // Importing React to avoid potential issues with JSX
 
 const schema = yup.object({
-  fullName: yup.string().required('Full name is required'),
+  fullName: yup.string() .required('Full Name is required')
+    .matches(/^[A-Za-z ]+$/, 'Only alphabets and spaces are allowed')
+    .min(3, 'Full Name must be at least 3 characters')
+    .max(50, 'Full Name must be at most 50 characters'),
   email: yup.string().email('Invalid email').required('Email is required'),
   phone: yup
     .string()
-    .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
-    .required('Phone is required'),
+    .required('Phone number is required')
+    .matches(/^(?!00)[0-9]{10}$/, 'Phone number must be 10 digits, no symbols, and should not start with 00'),
+
   password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
   confirmPassword: yup
     .string()

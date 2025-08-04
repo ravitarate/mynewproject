@@ -49,7 +49,7 @@ export const Navbar = () => {
             </Link>
             {user && (
               <Link
-                to="/bookings"
+                to="/my-bookings"
                 className="text-gray-700 hover:text-blue-600 transition-colors"
               >
                 My Bookings
@@ -62,7 +62,14 @@ export const Navbar = () => {
               >
                 Admin
               </Link>
-            )}
+            )}{user && (
+                 <>
+                   <Link to="/profile" onClick={() => setIsMenuOpen(false)}>Profile</Link>
+                      {profile?.role === "admin" && (
+                   <Link to="/admin" onClick={() => setIsMenuOpen(false)}>Admin</Link>
+         )}
+  </>
+)}
           </div>
 
           <div className="hidden md:flex items-center space-x-4">

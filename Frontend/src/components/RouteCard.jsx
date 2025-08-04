@@ -1,5 +1,6 @@
 import { Clock, MapPin, Users, Star } from 'lucide-react';
 import { format } from 'date-fns';
+import React from 'react';
 
 export const RouteCard = ({ route, onSelect, selectedDate }) => {
   const formatTime = (time) => {
@@ -14,92 +15,45 @@ export const RouteCard = ({ route, onSelect, selectedDate }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-      <div className="p-6">
-        {/* Timing Section */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">
-                {formatTime(route.departure_time)}
-              </div>
-              <div className="text-sm text-gray-600">{route.from_city}</div>
-            </div>
-
-            <div className="flex-1 flex items-center justify-center">
-              <div className="flex items-center space-x-2 text-gray-500">
-                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                <div className="flex-1 h-px bg-gray-300"></div>
-                <Clock className="h-4 w-4" />
-                <span className="text-sm">{route.duration}</span>
-                <div className="flex-1 h-px bg-gray-300"></div>
-                <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <div className="text-2xl font-bold text-gray-900">
-                {formatTime(route.arrival_time)}
-              </div>
-              <div className="text-sm text-gray-600">{route.to_city}</div>
-            </div>
-          </div>
+    <div
+      className="border rounded-lg p-4 shadow-md hover:bg-blue-50 transition-all cursor-pointer mb-4"
+      onClick={() => onSelect(route)}
+    >
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <MapPin className="w-5 h-5 text-blue-500" />
+          <span className="font-semibold">{route.fromCity}</span>
+          <span className="mx-1">→</span>
+          <span className="font-semibold">{route.toCity}</span>
         </div>
-
-        {/* Details Section */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <MapPin className="h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-600">{route.bus_operator}</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Users className="h-4 w-4 text-gray-500" />
-              <span className="text-sm text-gray-600">{route.bus_type}</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <Star className="h-4 w-4 text-yellow-500 fill-current" />
-              <span className="text-sm text-gray-600">4.2</span>
-            </div>
-          </div>
-
-          <div className="text-right">
-            <div className="text-2xl font-bold text-blue-600">₹{route.base_fare}</div>
-            <div className="text-sm text-gray-600">per seat</div>
-          </div>
-        </div>
-
-        {/* Amenities & CTA */}
-        <div className="flex items-center justify-between">
-          <div className="flex flex-wrap gap-2">
-            {route.amenities.slice(0, 3).map((amenity, index) => (
-              <span
-                key={index}
-                className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
-              >
-                {amenity}
-              </span>
-            ))}
-            {route.amenities.length > 3 && (
-              <span className="text-xs text-gray-500">
-                +{route.amenities.length - 3} more
-              </span>
-            )}
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <div className="text-sm text-green-600 font-medium">
-              {route.available_seats} seats available
-            </div>
-            <button
-              onClick={() => onSelect(route)}
-              className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200"
-            >
-              Select Seats
-            </button>
-          </div>
+        <div className="flex items-center gap-1 text-yellow-500 text-sm">
+          <Star className="w-4 h-4" />
+          {route.rating ? route.rating.toFixed(1) : '4.2'}
         </div>
       </div>
+      <div className="flex items-center justify-between text-gray-600 mb-2">
+        <div className="flex items-center gap-1">
+          <Clock className="w-4 h-4" />
+          <span>
+            {formatTime(route.departureTime)} - {formatTime(route.arrivalTime)}
+          </span>
+        </div>
+        <div className="flex items-center gap-1">
+          <Users className="w-4 h-4" />
+          <span>{route.availableSeats ?? 25} seats</span>
+        </div>
+      </div>
+      <div className="flex justify-between">
+        <span className="font-medium text-blue-800">
+          Operator: {route.busOperator}
+        </span>
+        <span className="font-bold text-green-600">
+          ₹{route.baseFare || 300}
+        </span>
+      </div>
+      {selectedDate &&
+        <div className="mt-1 text-xs text-gray-500">For date: {selectedDate}</div>
+      }
     </div>
   );
 };

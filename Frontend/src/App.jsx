@@ -7,6 +7,10 @@ import { Routes as RoutesPage } from "./pages/Routes";
 import { Booking } from "./pages/Booking";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
+import { Profile } from "./pages/Profile";
+import { Admin } from "./pages/Admin";
+import { MyBookings } from "./pages/MyBookings";
+
 import React from "react"; // Importing React to avoid potential issues with JSX
 
 import "./App.css"; // Importing global styles
@@ -17,15 +21,20 @@ function App() {
     <AuthProvider>
       <div className="min-h-screen bg-gray-50">
         <Navbar />
+
         <RouterRoutes>
           <Route path="/" element={<Home />} />
           <Route path="/route" element={<RoutesPage />} />
-          <Route path="/book/:routeId" element={<Booking />} />
+          <Route path="/booking/:routeId" element={<Booking />} />
+          <Route path="/my-bookings" element={<MyBookings />} />
           <Route path="/bookseat" element={<SeatSelection />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<Admin />} />
         </RouterRoutes>
         <Toaster position="top-right" />
+
       </div>
     </AuthProvider>
   );

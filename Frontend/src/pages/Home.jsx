@@ -151,7 +151,7 @@ export const Home = () => {
             <div
               key={index}
               className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 p-6 cursor-pointer"
-              onClick={() => navigate(`/routes?from=${route.from}&to=${route.to}&date=${searchData.date}`)}
+              onClick={() => navigate(`/route?from=${route.from}&to=${route.to}&date=${searchData.date}`)}
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-2">
