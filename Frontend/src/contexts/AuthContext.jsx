@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BUS_SERVICE_API_BASE_URL } from "../baseurls/BaseURLs";
 
-const AuthContext = createContext(undefined);
+export const AuthContext = createContext(undefined);
 const API_BASE_URL = BUS_SERVICE_API_BASE_URL;
 
 export const useAuth = () => {

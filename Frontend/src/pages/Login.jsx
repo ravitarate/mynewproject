@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { LogIn, Eye, EyeOff } from "lucide-react";
+import { LogIn, Eye, EyeOff, UserRoundIcon } from "lucide-react";
 import toast from "react-hot-toast";
 import { useAuth } from "../contexts/AuthContext";
 import { BUS_SERVICE_API_BASE_URL } from "../baseurls/BaseURLs";
@@ -63,6 +63,12 @@ export const Login = () => {
     try {
       await signIn(data.email, data.password);
       toast.success("Signed in successfully!");
+      localStorage.setItem("authToken", data.token);
+      localStorage.setItem("userName", data.userName);
+      localStorage.setItem("role", data.role);
+      localStorage.setItem("userId", data.userId);
+
+      // Redirect to home or bookings page
       navigate("/");
     } catch (error) {
       toast.error(error.message || "Error signing in");
