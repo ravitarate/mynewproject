@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { LogIn, Eye, EyeOff } from "lucide-react";
 import toast from "react-hot-toast";
 import { useAuth } from "../contexts/AuthContext";
+import { BUS_SERVICE_API_BASE_URL } from "../baseurls/BaseURLs";
 
 const schema = yup.object({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -15,7 +16,7 @@ const schema = yup.object({
     .required("Password is required"),
 });
 
-const API_BASE_URL = "https://localhost:44345/api";
+const API_BASE_URL = BUS_SERVICE_API_BASE_URL;
 
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);

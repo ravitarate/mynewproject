@@ -1,8 +1,9 @@
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import React from 'react';
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import React from "react";
+import { BUS_SERVICE_API_BASE_URL } from "../baseurls/BaseURLs";
 
-const API_BASE_URL = 'https://localhost:44345/api';
+const API_BASE_URL = BUS_SERVICE_API_BASE_URL;
 
 export const Routes = () => {
   const [searchParams] = useSearchParams();
@@ -12,10 +13,9 @@ export const Routes = () => {
 
   const [selectedRoute, setSelectedRoute] = useState(null);
 
-
-  const from = searchParams.get('from') || '';
-  const to = searchParams.get('to') || '';
-  const date = searchParams.get('date') || '';
+  const from = searchParams.get("from") || "";
+  const to = searchParams.get("to") || "";
+  const date = searchParams.get("date") || "";
 
   const [formData, setFormData] = useState({ from, to, date });
 
@@ -30,9 +30,9 @@ export const Routes = () => {
   useEffect(() => {
     if (from && to && date) {
       fetch(`${API_BASE_URL}/route?from=${from}&to=${to}&date=${date}`)
-        .then(res => res.json())
-        .then(data => setRoutes(data))
-        .catch(err => console.error('Failed to fetch routes:', err));
+        .then((res) => res.json())
+        .then((data) => setRoutes(data))
+        .catch((err) => console.error("Failed to fetch routes:", err));
     } else {
       setRoutes([]);
     }
@@ -43,7 +43,10 @@ export const Routes = () => {
       <h2 className="text-2xl font-bold mb-6">Search Bus Routes</h2>
 
       {/* 🔍 Filter Form */}
-      <form onSubmit={handleSearch} className="bg-white rounded-lg shadow-md p-6 mb-10">
+      <form
+        onSubmit={handleSearch}
+        className="bg-white rounded-lg shadow-md p-6 mb-10"
+      >
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <input
             type="text"
@@ -80,15 +83,19 @@ export const Routes = () => {
       {/* 🚌 Routes Display */}
       {routes.length > 0 ? (
         <ul className="space-y-4">
-          {routes.map(route => (
+          {routes.map((route) => (
             <li key={route.id} className="border p-4 rounded shadow">
               <div className="flex justify-between">
                 <div>
-                  <strong>{route.busOperator}</strong><br />
-                  {route.departureTime} → {route.arrivalTime} <br />
-                  ₹{route.baseFare} • {route.duration}
+                  <strong>{route.busOperator}</strong>
+                  <br />
+                  {route.departureTime} → {route.arrivalTime} <br />₹
+                  {route.baseFare} • {route.duration}
                 </div>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" onClick={() => navigate(`/bookseat`)}>
+                <button
+                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                  onClick={() => navigate(`/bookseat`)}
+                >
                   Book Now
                 </button>
               </div>
