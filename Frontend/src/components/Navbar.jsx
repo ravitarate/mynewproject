@@ -47,7 +47,7 @@ export const Navbar = () => {
             >
               Routes
             </Link>
-            {user && (
+            {user && profile.role === "user" &&(
               <Link
                 to="/my-bookings"
                 className="text-gray-700 hover:text-blue-600 transition-colors"
@@ -55,16 +55,13 @@ export const Navbar = () => {
                 My Bookings
               </Link>
             )}
-            {profile && profile.role === "admin" && (
-              <Link
-                to="/admin"
-                className="text-gray-700 hover:text-blue-600 transition-colors"
-              >
-                Admin
-              </Link>
+            {profile && profile.role === "user" && (
+              <Link to="/profile" onClick={() => setIsMenuOpen(false)}>Profile</Link>
+                
+              
             )}{user && (
                  <>
-                   <Link to="/profile" onClick={() => setIsMenuOpen(false)}>Profile</Link>
+                    
                       {profile?.role === "admin" && (
                    <Link to="/admin" onClick={() => setIsMenuOpen(false)}>Admin</Link>
          )}
