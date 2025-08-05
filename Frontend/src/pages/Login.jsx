@@ -67,6 +67,7 @@ export const Login = () => {
       localStorage.setItem("userName", data.userName);
       localStorage.setItem("role", data.role);
       localStorage.setItem("userId", data.userId);
+      console.log("User signed in:", data.useId);
 
       // Redirect to home or bookings page
       navigate("/");

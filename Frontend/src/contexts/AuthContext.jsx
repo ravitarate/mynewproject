@@ -70,6 +70,7 @@ export const AuthProvider = ({ children }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
+  
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -80,12 +81,15 @@ export const AuthProvider = ({ children }) => {
       setToken(data.token);
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("userName", data.userName);
+
+      
       localStorage.setItem("role", data.role);
       setUser(data.userName);
       setProfile({
         role: data.role,
         full_name: data.userName,
       });
+      return data;
 
       //await fetchProfile(data.token);
     } catch (err) {
