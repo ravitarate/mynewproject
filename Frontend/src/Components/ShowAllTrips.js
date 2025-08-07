@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import "react-toastify/dist/ReactToastify.css";
 import './ShowAllTrips.css';
 import Navbar from './Navbar';
+import { BUS_SERVICE_API_BASE_URL } from '../BaseURLs/BaseURLs';
 
 function ShowAllTrips() {
   const [trips, setTrips] = useState([]);
@@ -23,7 +24,7 @@ function ShowAllTrips() {
     if (source && destination && tripDate) {
       const fetchTrips = async () => {
         try {
-          const response = await axios.get("http://localhost:5050/getTripsByFilters", {
+          const response = await axios.get(BUS_SERVICE_API_BASE_URL+"/getTripsByFilters", {
             params: { source, destination, tripDate },
           });
           setTrips(response.data);

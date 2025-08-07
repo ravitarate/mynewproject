@@ -3,6 +3,7 @@ import axios from "axios"; // Import axios
 import "./ViewPayments.css"; // Your custom styles
 import { useNavigate } from "react-router-dom";
 import Agency from "./Agency"; // Assuming Admin component is used for layout
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function ViewPayments() {
   const [payments, setPayments] = useState([]);
@@ -31,7 +32,7 @@ function ViewPayments() {
           },
         };
   
-        const response = await axios.get("http://localhost:5050/admin/getAllPayments", config); // Use axios.get with config
+        const response = await axios.get(BUS_SERVICE_API_BASE_URL+"/admin/getAllPayments", config); // Use axios.get with config
         setPayments(response.data);
       } catch (error) {
         console.error("Error fetching payments:", error);

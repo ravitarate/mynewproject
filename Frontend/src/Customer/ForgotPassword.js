@@ -4,6 +4,7 @@ import Navbar from '../Components/Navbar';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BUS_SERVICE_API_BASE_URL } from '../BaseURLs/BaseURLs';
 
 
 function ForgotPassword() {
@@ -14,7 +15,7 @@ function ForgotPassword() {
 
     try {
       await axios.post(
-        `http://localhost:5050/auth/forgot-password?email=${email}`
+        `${BUS_SERVICE_API_BASE_URL}/auth/forgot-password?email=${email}`
       );
       toast.success("Password reset link sent successfully!", {
         autoClose: 5000, 

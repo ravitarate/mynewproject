@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../Components/Navbar";
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function EditProfile() {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ function EditProfile() {
   const [password, setPassword] = useState("");
   const [changePassword, setChangePassword] = useState(false);
 
-  const editUrl = `http://localhost:5050/customer/getUserById/${id}`;
-  const updateUrl = `http://localhost:5050/customer/updateUser/${id}`;
+  const editUrl = `${BUS_SERVICE_API_BASE_URL}/customer/getUserById/${id}`;
+  const updateUrl = `${BUS_SERVICE_API_BASE_URL}/customer/updateUser/${id}`;
 
   // Role validation and redirection
   useEffect(() => {

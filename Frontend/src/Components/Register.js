@@ -7,6 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "./Styles.css"; // Ensure this is where your CSS file is
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function Register() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function Register() {
     }),
     onSubmit: async (values) => {
       try {
-        await axios.post("http://localhost:5050/customer/registerUser", values);
+        await axios.post(BUS_SERVICE_API_BASE_URL+"/customer/registerUser", values);
         toast.success("Registration successful!");
         setTimeout(() => {
           navigate("/login");

@@ -7,6 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "./Styles.css"; // Import CSS for styling
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function Login() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function Login() {
     }),
     onSubmit: async (values) => {
       try {
-        const response = await axios.post("http://localhost:5050/login", values);
+        const response = await axios.post(BUS_SERVICE_API_BASE_URL+"/login", values);
         toast.success("Login Successful!", {
           position: "top-center",
           autoClose: 1000,

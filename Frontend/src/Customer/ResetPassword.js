@@ -4,6 +4,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import './ResetPassword.css';
+import { BUS_SERVICE_API_BASE_URL } from '../BaseURLs/BaseURLs';
 
 function ResetPassword() {
   const [email, setEmail] = useState('');
@@ -28,7 +29,7 @@ function ResetPassword() {
 
     try {
       const response = await axios.post(
-        `http://localhost:5050/auth/reset-password`,
+        `${BUS_SERVICE_API_BASE_URL}/auth/reset-password`,
         null,
         {
           params: {

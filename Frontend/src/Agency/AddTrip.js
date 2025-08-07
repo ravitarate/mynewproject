@@ -7,6 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Agency from "./Agency";
 import "./AddTrip.css";
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function AddTrip() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ function AddTrip() {
           },
         };
         const response = await axios.get(
-          `http://localhost:5050/agency/getBusesByAgent/${agentId}`,
+          `${BUS_SERVICE_API_BASE_URL}/agency/getBusesByAgent/${agentId}`,
           config
         );
         setBuses(response.data);
@@ -65,7 +66,7 @@ function AddTrip() {
     try {
       setData({ trips: [], isFetching: true });
       const response = await axios.get(
-        `http://localhost:5050/agency/getTripsByAgent/${agentId}`,
+        `${BUS_SERVICE_API_BASE_URL}/agency/getTripsByAgent/${agentId}`,
         config
       );
       setData({ trips: response.data, isFetching: false });
@@ -151,7 +152,7 @@ function AddTrip() {
       };
 
       try {
-        const url = `http://localhost:5050/agency/createTrip/${agentId}/${values.busId}`;
+        const url = `${BUS_SERVICE_API_BASE_URL}/agency/createTrip/${agentId}/${values.busId}`;
 
         await axios.post(url, tripData, config);
         toast.success("Trip added successfully!", {

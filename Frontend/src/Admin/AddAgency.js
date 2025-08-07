@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Admin from "./Admin";
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function ViewAgencies() {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ function ViewAgencies() {
 
       try {
         await axios.post(
-          "http://localhost:5050/admin/addAgent",
+          BUS_SERVICE_API_BASE_URL+"/admin/addAgent",
           values,
           config
         );

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import "./Bookings.css";
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function Bookings() {
   const [groupedBookings, setGroupedBookings] = useState([]);
@@ -23,7 +24,7 @@ function Bookings() {
       };
 
       const response = await axios.get(
-        `http://localhost:5050/customer/getBookings/${id}`,
+        `${BUS_SERVICE_API_BASE_URL}/customer/getBookings/${id}`,
         config
       );
 
@@ -81,7 +82,7 @@ function Bookings() {
       };
 
       const response = await axios.get(
-        `http://localhost:5050/customer/downloadBookingsPDF/${userId}/${tripId}`,
+        `${BUS_SERVICE_API_BASE_URL}/customer/downloadBookingsPDF/${userId}/${tripId}`,
         config
       );
 

@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Admin from "./Admin";
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function ViewAgency() {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ function ViewAgency() {
     try {
       setData({ agencies: [], isFetching: true });
       const response = await axios.get(
-        "http://localhost:5050/admin/getAllAgent",
+        BUS_SERVICE_API_BASE_URL+"/admin/getAllAgent",
         config
       );
       setData({ agencies: response.data, isFetching: false });

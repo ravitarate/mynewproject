@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Agency from "./Agency";
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function ViewBookings() {
   const { tripId } = useParams(); // Get tripId from URL params
@@ -35,7 +36,7 @@ function ViewBookings() {
 
       try {
         const response = await axios.get(
-          `http://localhost:5050/agency/getBookingsForTrip/${tripId}`,
+          `${BUS_SERVICE_API_BASE_URL}/agency/getBookingsForTrip/${tripId}`,
           config
         );
         setBookings(response.data);

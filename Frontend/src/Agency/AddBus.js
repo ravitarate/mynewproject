@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Agency from "./Agency";
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function AddBus() {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ function AddBus() {
         },
       };
       const response = await axios.get(
-        `http://localhost:5050/agency/getBusesByAgent/${id}`,
+        `${BUS_SERVICE_API_BASE_URL}/agency/getBusesByAgent/${id}`,
         config
       );
       setBusData(response.data);
@@ -72,7 +73,7 @@ function AddBus() {
           },
         };
         await axios.post(
-          `http://localhost:5050/agency/addBus/${id}`,
+          `${BUS_SERVICE_API_BASE_URL}/agency/addBus/${id}`,
           values,
           config
         );

@@ -6,6 +6,7 @@ import { MdAirlineSeatReclineNormal } from "react-icons/md";
 import { useLocation, useNavigate } from "react-router-dom"; 
 import Navbar from "../Components/Navbar";
 import "./ViewSeats.css";
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 function ViewSeats() {
   const [seats, setSeats] = useState([]);
@@ -39,7 +40,7 @@ function ViewSeats() {
               Authorization: `Bearer ${sessionStorage.getItem("jwtToken")}`,
             },
           };
-        const response = await axios.get(`http://localhost:5050/customer/trip/${tripId}`,config);
+        const response = await axios.get(`${BUS_SERVICE_API_BASE_URL}/customer/trip/${tripId}`,config);
         setSeats(response.data);
       } catch (error) {
         toast.error("Failed to fetch seat data!");

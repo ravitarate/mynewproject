@@ -13,6 +13,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios"; 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BUS_SERVICE_API_BASE_URL } from "../BaseURLs/BaseURLs";
 
 export default function PaymentForm() {
   const [cardNumber, setCardNumber] = useState("");
@@ -96,7 +97,7 @@ export default function PaymentForm() {
       };
 
       const response = await axios.post(
-        "http://localhost:5050/customer/bookTickets",
+        BUS_SERVICE_API_BASE_URL+"/customer/bookTickets",
         payload,
         config
       );
